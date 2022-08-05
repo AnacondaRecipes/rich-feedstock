@@ -1,5 +1,5 @@
 {% set name = "rich" %}
-{% set version = "10.16.2" %}
+{% set version = "12.5.1" %}
 
 
 package:
@@ -8,26 +8,27 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 720974689960e06c2efdb54327f8bf0cdbdf4eae4ad73b6c94213cad405c371b
+  sha256: 63a5c5ce3673d3d5fbbf23cd87e11ab84b6b451436f1b7f19ec54b6bc36ed7ca
 
 build:
-  noarch: python
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
+  skip: True  # [py<36]
 
 requirements:
   host:
     - pip
-    - python >=3.6.2
+    - setuptools
+    - wheel
+    - python
     - poetry >=1.0.10
     - poetry-core
   run:
-    - colorama >=0.4.0,<0.5.0
     - commonmark >=0.9.0,<0.10.0
     - dataclasses >=0.7,<0.9
     - pygments >=2.6.0,<3.0.0
-    - python >=3.6.2
-    - typing_extensions >=3.7.4,<5.0.0
+    - python
+    - typing_extensions >=4.0.0,<5.0.0
 
 test:
   imports:
