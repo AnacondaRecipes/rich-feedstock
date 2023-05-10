@@ -1,7 +1,6 @@
 {% set name = "rich" %}
 {% set version = "13.3.5" %}
 
-
 package:
   name: {{ name|lower }}
   version: {{ version }}
