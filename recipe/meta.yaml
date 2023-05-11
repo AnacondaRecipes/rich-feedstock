@@ -20,7 +20,7 @@ requirements:
     - setuptools
     - wheel
     - python
-    - poetry-core >=1.0.0 
+    - poetry-core >=1.0.0
   run:
     - markdown-it-py >=2.2.0,<3.0.0
     - pygments >=2.13.0,<3.0.0
