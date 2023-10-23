@@ -10,7 +10,7 @@ source:
   sha256: 2d11b9b8dd03868f09b4fffadc84a6a8cda574e40dc90821bd845720ebb8e89c
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: True  # [py<37]
 
@@ -20,7 +20,7 @@ requirements:
     - setuptools
     - wheel
     - python
-    - poetry-core 1.0.0
+    - poetry-core 1.5
   run:
     - markdown-it-py >=2.2.0,<3.0.0
     - pygments >=2.13.0,<3.0.0
