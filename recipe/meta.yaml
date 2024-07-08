@@ -17,8 +17,6 @@ build:
 requirements:
   host:
     - pip
-    - setuptools
-    - wheel
     - python
     - poetry-core 1.5
   run:
