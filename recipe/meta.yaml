@@ -9,7 +9,6 @@ source:
   url: https://github.com/Textualize/{{ name }}/archive/refs/tags/v{{ version  }}.tar.gz
   sha256: 94f7240312afb70f1055bd434fed7df0bda086533c93e04bf161b159fcc9fcf7 
 
-
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
@@ -36,7 +35,7 @@ test:
     - pip
 
 about:
-  home: https://github.com/willmcgugan/rich
+  home: https://github.com/Textualize/rich
   license: MIT
   license_family: MIT
   license_file: LICENSE
@@ -48,7 +47,7 @@ about:
     markdown, syntax highlighted source code, tracebacks, and more — out
     of the box.
   doc_url: https://rich.readthedocs.io/en/latest/
-  dev_url: https://github.com/willmcgugan/rich
+  dev_url: https://github.com/Textualize/rich
 
 extra:
   recipe-maintainers:
