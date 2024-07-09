@@ -26,13 +26,20 @@ requirements:
     - typing_extensions >=4.0.0,<5.0.0  # [py<39]
   run_constrained:
     - ipywidgets >=7.5.1,<9
+
 test:
   imports:
     - rich
+  source_files:
+    - tests
   commands:
     - pip check
+    # ignore test_pretty because attr missing
+    # skip the rest because of rendered output not matching snapshots
+    - pytest -vv tests --ignore=tests/test_pretty.py -k "not (test_markdown_render or test_syntax_highlight_ranges or test_option_no_wrap or test_python_render or test_card_render)"
   requires:
     - pip
+    - pytest
 
 about:
   home: https://github.com/Textualize/rich
