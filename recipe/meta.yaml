@@ -6,8 +6,9 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 9be308cb1fe2f1f57d67ce99e95af38a1e2bc71ad9813b0e247cf7ffbcc3a432
+  url: https://github.com/Textualize/{{ name }}/archive/refs/tags/v{{ version  }}.tar.gz
+  sha256: 94f7240312afb70f1055bd434fed7df0bda086533c93e04bf161b159fcc9fcf7 
+
 
 build:
   number: 0
@@ -20,12 +21,12 @@ requirements:
     - python
     - poetry-core 1.5
   run:
-    - markdown-it-py >=2.2.0
-    - pygments >=2.13.0
+    - markdown-it-py >=2.2.0,<3.0.0
+    - pygments >=2.13.0,<3.0.0
     - python
-    - typing_extensions >=4.0.0  # [py<39]
+    - typing_extensions >=4.0.0,<5.0.0  # [py<39]
   run_constrained:
-    - ipywidgets >=7.5.1
+    - ipywidgets >=7.5.1,<9
 test:
   imports:
     - rich
