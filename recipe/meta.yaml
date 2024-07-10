@@ -1,24 +1,22 @@
 {% set name = "rich" %}
-{% set version = "13.3.5" %}
+{% set version = "13.7.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2d11b9b8dd03868f09b4fffadc84a6a8cda574e40dc90821bd845720ebb8e89c
+  url: https://github.com/Textualize/{{ name }}/archive/refs/tags/v{{ version  }}.tar.gz
+  sha256: 94f7240312afb70f1055bd434fed7df0bda086533c93e04bf161b159fcc9fcf7 
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: True  # [py<37]
 
 requirements:
   host:
     - pip
-    - setuptools
-    - wheel
     - python
     - poetry-core 1.5
   run:
@@ -28,16 +26,23 @@ requirements:
     - typing_extensions >=4.0.0,<5.0.0  # [py<39]
   run_constrained:
     - ipywidgets >=7.5.1,<9
+
 test:
   imports:
     - rich
+  source_files:
+    - tests
   commands:
     - pip check
+    # skip the rest because of rendered output not matching snapshots
+    - pytest -vv tests -k "not (test_markdown_render or test_syntax_highlight_ranges or test_option_no_wrap or test_python_render or test_card_render)"
   requires:
     - pip
+    - pytest
+    - attrs
 
 about:
-  home: https://github.com/willmcgugan/rich
+  home: https://github.com/Textualize/rich
   license: MIT
   license_family: MIT
   license_file: LICENSE
@@ -49,7 +54,7 @@ about:
     markdown, syntax highlighted source code, tracebacks, and more — out
     of the box.
   doc_url: https://rich.readthedocs.io/en/latest/
-  dev_url: https://github.com/willmcgugan/rich
+  dev_url: https://github.com/Textualize/rich
 
 extra:
   recipe-maintainers:
