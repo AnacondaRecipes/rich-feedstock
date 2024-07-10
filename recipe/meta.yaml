@@ -34,12 +34,12 @@ test:
     - tests
   commands:
     - pip check
-    # ignore test_pretty because attr missing
     # skip the rest because of rendered output not matching snapshots
-    - pytest -vv tests --ignore=tests/test_pretty.py -k "not (test_markdown_render or test_syntax_highlight_ranges or test_option_no_wrap or test_python_render or test_card_render)"
+    - pytest -vv tests -k "not (test_markdown_render or test_syntax_highlight_ranges or test_option_no_wrap or test_python_render or test_card_render)"
   requires:
     - pip
     - pytest
+    - attrs
 
 about:
   home: https://github.com/Textualize/rich
