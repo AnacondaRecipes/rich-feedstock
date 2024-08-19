@@ -8,6 +8,9 @@ package:
 source:
   url: https://github.com/Textualize/{{ name }}/archive/refs/tags/v{{ version  }}.tar.gz
   sha256: 94f7240312afb70f1055bd434fed7df0bda086533c93e04bf161b159fcc9fcf7 
+  patches:
+    - PR3229.patch
+    - PR3455.patch
 
 build:
   number: 0
@@ -35,7 +38,9 @@ test:
   commands:
     - pip check
     # skip the rest because of rendered output not matching snapshots
-    - pytest -vv tests -k "not (test_markdown_render or test_syntax_highlight_ranges or test_option_no_wrap or test_python_render or test_card_render)"
+    # Test skipped for 3.13:
+    # - test_attrs_broken_310: as recommended by Jonathan Helmus ("specific error message that changed slightly in 3.13 but IMHO the new error message is better")
+    - pytest -vv tests -k "not (test_markdown_render or test_syntax_highlight_ranges or test_option_no_wrap or test_python_render or test_card_render or test_attrs_broken_310)"
   requires:
     - pip
     - pytest

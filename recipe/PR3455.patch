@@ -1,0 +1,39 @@
+From ef8f23186eacbcc51777a948897ebb646978dd8c Mon Sep 17 00:00:00 2001
+From: Jonathan Helmus <jjhelmus@gmail.com>
+Date: Fri, 16 Aug 2024 12:10:23 -0500
+Subject: [PATCH 1/2] Handle dataclasses with Python 3.13 default repr
+
+The reprlib module is used for the default __repr__ method in
+dataclasses starting in Python 3.13.
+
+Allow this module to also be an indication that a dataclass has the
+default __repr__.
+
+closes #3368
+---
+ rich/pretty.py | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/rich/pretty.py b/rich/pretty.py
+index fa340212e..e0c78f627 100644
+--- a/rich/pretty.py
++++ b/rich/pretty.py
+@@ -3,6 +3,7 @@
+ import dataclasses
+ import inspect
+ import os
++import reprlib
+ import sys
+ from array import array
+ from collections import Counter, UserDict, UserList, defaultdict, deque
+@@ -78,7 +79,10 @@ def _is_dataclass_repr(obj: object) -> bool:
+     # Digging in to a lot of internals here
+     # Catching all exceptions in case something is missing on a non CPython implementation
+     try:
+-        return obj.__repr__.__code__.co_filename == dataclasses.__file__
++        return obj.__repr__.__code__.co_filename in (
++            dataclasses.__file__,
++            reprlib.__file__,
++        )
+     except Exception:  # pragma: no coverage
+         return False
