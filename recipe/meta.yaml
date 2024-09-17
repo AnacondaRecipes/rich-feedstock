@@ -19,6 +19,7 @@ requirements:
     - pip
     - python
     - poetry-core 1.5
+    - wheel
   run:
     - markdown-it-py >=2.2.0,<3.0.0
     - pygments >=2.13.0,<3.0.0
@@ -57,6 +58,13 @@ about:
   dev_url: https://github.com/Textualize/rich
 
 extra:
+  skip-lints:
+    - avoid_noarch
+  anaconda-services:
+    recipe-maintainers:
+       - bkreider
+    comment: "Dependency for deepeval requested from https://anaconda.zendesk.com/agent/tickets/53943"
+
   recipe-maintainers:
     - jan-janssen
     - willmcgugan
