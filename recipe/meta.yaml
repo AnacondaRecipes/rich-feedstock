@@ -1,5 +1,5 @@
 {% set name = "rich" %}
-{% set version = "13.9.4" %}
+{% set version = "14.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,20 +7,20 @@ package:
 
 source:
   url: https://github.com/Textualize/{{ name }}/archive/refs/tags/v{{ version  }}.tar.gz
-  sha256: 22bfd7f24f6107ed222f6ab0cee6f0016e22cb6f91144b90c65b112663c7477c 
-  patches:
-    - patches/0001-skip-tests-for-py314.patch
+  sha256: f21cbcf44386ba2b306552f506dd3ede86349cafd2a8cbf1b7bb38b705a64594
+  patches:                                     # [py>=314]
+    - patches/0001-skip-tests-for-py314.patch  # [py>=314]
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  skip: True  # [py<38]
+  skip: true  # [py<38]
 
 requirements:
   host:
     - pip
     - python
-    - poetry-core >=1.0.0
+    - poetry-core
   run:
     - markdown-it-py >=2.2.0
     - pygments >=2.13.0,<3.0.0
