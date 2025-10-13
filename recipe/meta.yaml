@@ -1,5 +1,5 @@
 {% set name = "rich" %}
-{% set version = "13.9.4" %}
+{% set version = "14.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/Textualize/{{ name }}/archive/refs/tags/v{{ version  }}.tar.gz
-  sha256: 22bfd7f24f6107ed222f6ab0cee6f0016e22cb6f91144b90c65b112663c7477c 
+  sha256: 589ddd6a66adbffb9d0e406da9d529a886d2c040177da4b72fad4a8563ff5afc 
 
 build:
   number: 0
@@ -23,7 +23,6 @@ requirements:
     - markdown-it-py >=2.2.0
     - pygments >=2.13.0,<3.0.0
     - python
-    - typing_extensions >=4.0.0,<5.0.0  # [py<311]
   run_constrained:
     - ipywidgets >=7.5.1,<9
 
@@ -53,7 +52,7 @@ about:
     terminal output. Rich can also render pretty tables, progress bars,
     markdown, syntax highlighted source code, tracebacks, and more — out
     of the box.
-  doc_url: https://rich.readthedocs.io/en/latest/
+  doc_url: https://rich.readthedocs.io
   dev_url: https://github.com/Textualize/rich
 
 extra:
