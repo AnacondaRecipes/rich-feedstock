@@ -1,5 +1,5 @@
 {% set name = "rich" %}
-{% set version = "14.2.0" %}
+{% set version = "15.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/Textualize/{{ name }}/archive/refs/tags/v{{ version  }}.tar.gz
-  sha256: 589ddd6a66adbffb9d0e406da9d529a886d2c040177da4b72fad4a8563ff5afc 
+  sha256: 5e79a8738b4e4e552291253c69e32c695de38f24400b137b119d54385234526a
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  skip: True  # [py<38]
+  skip: True  # [py<39]
 
 requirements:
   host:
