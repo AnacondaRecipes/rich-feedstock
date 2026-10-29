@@ -10,7 +10,7 @@ source:
   sha256: 5e79a8738b4e4e552291253c69e32c695de38f24400b137b119d54385234526a
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: True  # [py<39]
 
@@ -34,7 +34,9 @@ test:
   commands:
     - pip check
     # skip the rest because of rendered output not matching snapshots
-    - pytest -vv tests -k "not (test_markdown_render or test_syntax_highlight_ranges or test_option_no_wrap or test_python_render or test_card_render or test_brokenpipeerror or test_background_color_override_includes_padding)"
+    # pygments 2.21 recolors print in markdown table code; py3.15 changes signatures
+    - pytest -vv tests -k "not (test_markdown_render or test_syntax_highlight_ranges or test_option_no_wrap or test_python_render or test_card_render or test_brokenpipeerror or test_background_color_override_includes_padding or test_inline_code_in_table_cells)"  # [py<315]
+    - pytest -vv tests -k "not (test_markdown_render or test_syntax_highlight_ranges or test_option_no_wrap or test_python_render or test_card_render or test_brokenpipeerror or test_background_color_override_includes_padding or test_inline_code_in_table_cells or test_inspect_builtin_function_except_python311 or test_inspect_builtin_function_only_python311 or test_inspect_integer_with_methods_python38_and_python39 or test_inspect_integer_with_methods_python310only or test_inspect_integer_with_methods_python311 or test_attrs_broken)"  # [py>=315]
   requires:
     - pip
     - pytest
